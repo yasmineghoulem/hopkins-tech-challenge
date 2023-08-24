@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-export const selectState = (state) => _.get(state, 'matters');
+export const selectState = (state) => _.get(state, 'matter');
 
 // example of a selector, doesn't force you to use a specific data structure
 export const selectMatterById = _.curry((matterId, state) =>

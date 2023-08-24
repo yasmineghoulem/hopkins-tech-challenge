@@ -15,14 +15,12 @@ import matterSagas from './Matter/model/sagas';
 // please keep reducers in alphabetical order
 const createRootReducer = (history) =>
   combineReducers({
-    matters: matterReducer,
+    matter: matterReducer,
     router: connectRouter(history),
   });
 
 function* rootSaga() {
-  yield all([
-    ...matterSagas,
-  ]);
+  yield all([...matterSagas]);
 }
 
 const sagaMiddleware = createSagaMiddleware();

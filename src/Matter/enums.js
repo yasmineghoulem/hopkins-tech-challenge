@@ -16,3 +16,5 @@ export const AREAS_OF_LAW = {
     value: 'Sozialrecht',
   },
 };
+
+export const MATTER_URL = process.env.REACT_APP_MATTER_URL;

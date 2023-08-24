@@ -8,6 +8,7 @@
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
     "antd": "4.24.13",
+    "axios": "^1.4.0",
     "connected-react-router": "^6.9.3",
     "lodash": "^4.17.21",
     "moment": "^2.29.4",

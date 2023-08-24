@@ -1,11 +1,11 @@
-import { MATTERS } from './actions';
+import { MATTER } from './actions';
 
 const initialState = {};
 
 // example of a reducer
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case MATTERS.FETCH.REQUEST:
+    case MATTER.FETCH_LIST.REQUEST:
     default:
       return state;
   }
