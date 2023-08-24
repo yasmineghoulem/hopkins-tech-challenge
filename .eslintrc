@@ -1,0 +1,66 @@
+{
+  "root": true,
+  "env": {
+    "browser": true,
+    "es6": true,
+    "jest": true,
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+    "import/resolver": {
+      "node": {
+        "paths": ["./src"]
+      }
+    }
+  },
+  "parser": "@babel/eslint-parser",
+  "parserOptions": {
+    "requireConfigFile": false,
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2018,
+    "sourceType": "module",
+    "babelOptions": {
+      "presets": ["@babel/preset-react"]
+   }
+  },
+  "plugins": ["react", "react-hooks", "eslint-plugin-no-inline-styles"],
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-filename-extension": ["error", { "extensions": [".test.js", ".jsx"] }],
+    "react/prop-types": 0,
+    "react/jsx-props-no-spreading": "off",
+    "no-shadow": "off",
+    "quotes": ["error", "single"],
+    "jsx-quotes": ["error", "prefer-single"],
+    "max-len": ["error", { "code": 120, "comments": 150 }],
+    "semi": ["error", "always"],
+    "no-console": 1,
+    "import/prefer-default-export": "off",
+    "comma-dangle": ["error", {
+      "arrays": "always-multiline",
+      "objects": "always-multiline",
+      "imports": "always-multiline",
+      "exports": "always-multiline",
+      "functions": "never"
+    }],
+    "object-curly-newline": "off",
+    "implicit-arrow-linebreak": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "object-shorthand": "error",
+    "no-inline-styles/no-inline-styles": 2
+  }
+}

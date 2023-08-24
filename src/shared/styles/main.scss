@@ -1,0 +1,33 @@
+@use 'sass:color';
+@use 'src/shared/styles/colors.scss';
+@use 'src/shared/styles/variables.scss';
+@use 'src/shared/styles/mediaStyles.scss';
+
+$paddingVerticalShort: 1.75rem;
+$paddingHorizontalShort: 1.5rem;
+$paddingVerticalLong: 1.15rem;
+$paddingHorizontalLong: 0.95rem;
+
+.card {
+  border-radius: 4px;
+  box-shadow: 0 8px 20px -10px colors.$beige_dark;
+  background: #fff;
+  font-size: 1rem;
+  width: 100%;
+  position: relative;
+
+  &.glass {
+    @include variables.blurry-background();
+    background: linear-gradient(110deg, rgba(255, 255, 255, 0.528) 17%, rgba(255, 255, 255, 0.088) 112%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &.short {
+    height: 200px;
+    padding: $paddingVerticalShort $paddingHorizontalShort;
+    min-width: variables.$caseCardMinWidthShort;
+    max-width: variables.$caseCardMaxWidthShort;
+  }
+}

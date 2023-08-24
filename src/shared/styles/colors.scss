@@ -1,0 +1,12 @@
+@use 'sass:color';
+
+$orange: #e05b1f;
+$teal: #008496;
+$teal_light: color.adjust($teal, $alpha: -0.2);
+$black_dark: #212627;
+$black_light: #414444;
+$gray: #9eb2b2;
+$beige_extra_light: #faf7f2;
+$beige_light: #f2ede4;
+$beige_dark: #e5dfd6;
+$red: #ed1c4c;

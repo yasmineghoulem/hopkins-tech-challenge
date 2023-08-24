@@ -1,0 +1,6 @@
+@use 'src/shared/styles/colors.scss';
+
+@mixin supporting-text($opacity: 0.5) {
+  opacity: $opacity;
+  font-size: 0.98rem;
+}

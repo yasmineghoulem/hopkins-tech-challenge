@@ -1,0 +1,44 @@
+@use 'src/shared/styles/colors.scss';
+
+@mixin font($font-family, $font-file) {
+  @font-face {
+    font-family: $font-family;
+    src: url($font-file + '.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
+}
+
+.CP-button {
+  text-align: center;
+
+  .ant-btn {
+    background: colors.$black_light;
+    border: 1px solid colors.$black_light;
+    color: colors.$beige_extra_light;
+    width: 100%;
+
+    &.ant-btn-primary {
+      background: colors.$teal;
+      border: 1px solid colors.$teal;
+    }
+
+    &:hover {
+      background: colors.$gray;
+      color: colors.$beige_extra_light;
+      border: 1px solid colors.$gray;
+    }
+
+    &:focus {
+      background: colors.$gray;
+      color: colors.$beige_extra_light;
+      border: 1px solid colors.$gray;
+    }
+
+    &:disabled {
+      background: colors.$gray;
+      border: 1px solid colors.$gray;
+      opacity: 0.5;
+    }
+  }
+}

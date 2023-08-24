@@ -1,0 +1,16 @@
+// General
+$baseMargin: 2rem; // left and right margins for Header and Home container
+
+@mixin blurry-background($backdrop-filter: blur(6px)) {
+  backdrop-filter: $backdrop-filter;
+}
+
+// Menu
+$menuMarginTop: 9.875rem;
+$menuMobileHeight: 64px;
+
+// Home page
+$caseCardMaxWidthShort: 425px;
+$caseCardMinWidthShort: 270px;
+$caseCardMinHeightLong: 90px;
+$caseListGap: 1.5rem;

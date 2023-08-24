@@ -1,2 +1,1 @@
-# tech-challenge
-Interview Tech Challenge
+# Hopkins Tech Challenge

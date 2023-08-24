@@ -1,0 +1,40 @@
+@use 'sass:color';
+@use 'src/shared/styles/colors.scss';
+
+.error-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  flex-grow: 1;
+
+  .error-icon {
+    width: 3em;
+    height: 3em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Recife Text', serif;
+    font-size: 1.5em;
+    color: color.adjust(colors.$orange, $alpha: -0.2);
+    background: colors.$beige_dark;
+    border-radius: 50%;
+    position: relative;
+
+    &::after {
+      content: '\25BC';
+      position: absolute;
+      left: -0.3em;
+      bottom: -0.3em;
+      transform: rotate(45deg);
+      color: colors.$beige_dark;
+    }
+  }
+
+  .error-message {
+    text-align: center;
+    color: color.adjust(colors.$black_dark, $alpha: -0.6);
+    width: 90%;
+    margin: 0.5em 0;
+  }
+}

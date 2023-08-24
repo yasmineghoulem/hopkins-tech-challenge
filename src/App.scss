@@ -1,0 +1,83 @@
+@use 'src/shared/styles/main.scss';
+@use 'src/shared/styles/colors.scss';
+
+html {
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: -0.02em;
+
+  body {
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: colors.$beige_extra_light;
+    font-family: 'GT America', sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: 'Recife Text', serif;
+    font-style: normal;
+    font-weight: 600;
+    color: colors.$black_dark;
+  }
+
+  h1 {
+    font-size: 3.75rem;
+    line-height: 5rem;
+  }
+
+  h2 {
+    font-size: 2.25rem;
+    line-height: 4rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    line-height: 3rem;
+  }
+
+  a {
+    color: colors.$teal;
+  }
+
+  a:hover {
+    color: colors.$gray;
+  }
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  font-size: 1rem;
+
+  &::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: -600px;
+    right: -680px;
+    width: 400px;
+    height: 2000px;
+    transform: rotate(-45deg);
+    border: 1.5px solid colors.$gray;
+    border-radius: 40%;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: -120px;
+    right: -140px;
+    width: 240px;
+    height: 240px;
+    border: 1.5px solid colors.$orange;
+    border-radius: 100%;
+  }
+}
