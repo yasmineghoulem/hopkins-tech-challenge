@@ -81,3 +81,111 @@ html {
     border-radius: 100%;
   }
 }
+
+
+@media (max-width: (mediaStyles.$largerPhone - 1)) {
+  html {
+    font-size: 12px;
+
+    h1 {
+      font-size: 2.85rem;
+      line-height: 3.4rem;
+    }
+
+    h3 {
+      font-size: 2.35rem;
+      line-height: 3.2rem;
+    }
+  }
+}
+
+@media (min-width: mediaStyles.$largerPhone) {
+  html {
+    font-size: 13px;
+
+    h1 {
+      font-size: 2.85rem;
+      line-height: 4.275rem;
+    }
+  }
+
+  .app-container::before {
+    right: -550px;
+    transform: rotate(-40deg);
+  }
+
+  .app-container::after {
+    width: 280px;
+    height: 280px;
+  }
+}
+
+@media (min-width: mediaStyles.$small) {
+  html {
+    font-size: 13px;
+
+    h1 {
+      font-size: 2.85rem;
+      line-height: 4.275rem;
+    }
+  }
+
+  .app-container::before {
+    right: -485px;
+  }
+
+  .app-container::after {
+    width: 400px;
+    height: 400px;
+    top: -175px;
+    right: -215px;
+  }
+}
+
+@media (min-width: mediaStyles.$tablet) {
+  html {
+    font-size: 14px;
+
+    h1 {
+      font-size: 3rem;
+      line-height: 4.275rem;
+    }
+
+    h3 {
+      font-size: 1.75rem;
+    }
+  }
+}
+
+@media (min-width: mediaStyles.$desktop) {
+  html {
+    font-size: 15px;
+
+    h1 {
+      font-size: 3.5rem;
+      line-height: 4.5rem;
+    }
+  }
+
+  .app-container::before {
+    right: -320px;
+  }
+
+  .app-container::after {
+    width: 900px;
+    height: 900px;
+    top: -400px;
+    right: -670px;
+  }
+}
+
+@media (min-width: mediaStyles.$desktopLarge) {
+  html {
+    font-size: 16px;
+
+    h1 {
+      font-size: 3.75rem;
+      line-height: 5rem;
+    }
+  }
+}
