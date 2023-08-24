@@ -1,3 +1,4 @@
 export const API_BASE_URL =
-  process.env.REACT_APP_API_BASE_URL ||
-  'https://dev-secure.hopkins.law/webhook/64e615792eb913001da079f0';
+  process.env.REACT_APP_API_BASE_URL || 'http://localhost:3000/api/v1';
+
+export const API_KEY = process.env.REACT_APP_API_KEY;
