@@ -3,12 +3,12 @@ import { Route, Switch } from 'react-router-dom';
 
 import { Loader } from 'shared/components';
 
-const MatterList = lazy(() => import('../Matter/components/List'));
+const List = lazy(() => import('../Matter/components/List/List'));
 
 const Routes = () => (
   <Suspense fallback={<Loader size='large' />}>
     <Switch>
-      <Route path='/' component={MatterList} />
+      <Route path='/' component={List} />
     </Switch>
   </Suspense>
 );
