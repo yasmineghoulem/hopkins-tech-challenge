@@ -1,0 +1,20 @@
+@use 'src/shared/styles/colors.scss';
+
+.navigate-back {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 3px;
+  cursor: pointer !important;
+  width: fit-content;
+  padding: 5px;
+  z-index: 6; // one higher than Header
+
+  &:hover {
+    color: colors.$teal;
+  }
+
+  span {
+    line-height: 26px;
+  }
+}
