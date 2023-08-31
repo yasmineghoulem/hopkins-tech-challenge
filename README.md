@@ -17,7 +17,7 @@ There should be two pages: 'MatterList' and 'MatterDetails'.
 ## API description
 There's a single API route to get the data: (POST) `/${MATTER_URL}`. You'll get `MATTER_URL` in the `.env` and you don't need to set it up. The difference is in the body params:
  - if you want to get the list of Matters - send `{ pageNumber: number, areaOfLaw?: string }`. Notice `pageNumber` is required (starts with 1), and `areaOfLaw` is optional - to get Matters of all Areas of Law, omit the param.
- - if you want to get the details of a single Matter - send `{ id: string }`.
+ - if you want to get the details of a single Matter - send `{ id: string }`. It'll return you the Matter object plus the list of random Tasks (they are generated per request, so you'll get different Tasks for the same Matter id).
 
 ## Requirements:
  - there should be Spinners indicating loading state, proper error handling, and empty states (e.g. "No Data") on both pages.
