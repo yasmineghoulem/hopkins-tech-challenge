@@ -1,6 +1,9 @@
 @use 'src/shared/styles/colors.scss';
 
 .radio-group {
+  display: flex;
+  flex-direction: row-reverse;
+  
   .ant-radio-button-wrapper {
     height: 40px;
     padding: 4px 16px;
@@ -22,3 +25,4 @@
     }
   }
 }
+

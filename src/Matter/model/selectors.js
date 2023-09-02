@@ -7,4 +7,11 @@ export const selectMatterById = _.curry((matterId, state) =>
   _.chain(state).thru(selectState).get(matterId).value()
 );
 
-// write your selectors here
+// Select the matter list from the matter state
+export const selectMatterList = (state) => {
+  return _.get(selectState(state), 'matterList', []);
+};
+
+export const selectLoadingState = (state) => {
+  return _.get(selectState(state), 'isLoading', []);
+};

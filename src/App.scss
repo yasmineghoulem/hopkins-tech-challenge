@@ -8,7 +8,7 @@ html {
   letter-spacing: -0.02em;
 
   body {
-    margin: 0;
+    margin: 4;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: colors.$beige_extra_light;
@@ -56,7 +56,7 @@ html {
   position: relative;
   overflow: hidden;
   font-size: 1rem;
-
+  margin: 6rem;
   &::before {
     content: '';
     position: absolute;
