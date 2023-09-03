@@ -2,7 +2,6 @@ import {
   format,
 } from 'date-fns';
 
-
 export const AREAS_OF_LAW = {
   ALL: {
     label: 'Alle',
@@ -25,6 +24,11 @@ export const AREAS_OF_LAW = {
 export const MATTER_URL = process.env.REACT_APP_MATTER_URL;
 
 export const AREAS_OF_LAW_VALUES = Object.values(AREAS_OF_LAW);
+
+// Format the date to a human-readable format
+export const formatCreatedAt = (createdAt) => {
+  return format(new Date(createdAt), 'MMM dd, yyyy HH:mm ');
+};
 
 export const COLUMNS = [{
     title: 'Status',
@@ -49,8 +53,14 @@ export const COLUMNS = [{
   },
 ];
 
-
-// Format the date to a human-readable format
-const formatCreatedAt = (createdAt) => {
-  return format(new Date(createdAt), 'MMM dd, yyyy HH:mm ');
-};
+export const DETAILSCOLUMNS = [{
+    title: 'Task Title',
+    dataIndex: 'title',
+    key: 'title',
+  },
+  {
+    title: 'Status',
+    dataIndex: 'status',
+    key: 'status',
+  },
+];

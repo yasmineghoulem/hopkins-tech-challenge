@@ -1,30 +1,47 @@
 import { connect, useDispatch } from 'react-redux';
 import React, { useEffect } from 'react';
 import {
+  fetchMatterDetailsRequest,
   fetchMatterListRequest,
-  setAreaOfLowFilter,
+  setAreaOfLawFilter,
   setCurrentPageNumber,
 } from '../../model/actions';
-import { selectMatterList } from '../../model/selectors';
+import {
+  selectCurrentPageNumber,
+  selectCurrentPageSize,
+  selectAreaOfLawFilter,
+  selectError,
+  selectMatterList,
+  selectLoadingState,
+  selectNumberOfMetters,
+} from '../../model/selectors';
 import { NoData, Error, Loader, RadioGroup } from 'shared/components';
 import { Table } from 'antd';
 
 import './List.scss';
 import { AREAS_OF_LAW_VALUES, COLUMNS } from 'Matter/enums';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 const List = ({
   matterList,
   isLoading,
   error,
-  areaOfLowFilter,
+  areaOfLawFilter,
   fetchMatterListRequest,
   currentPageNumber,
+  currentPageSize,
+  numberOfMetters,
 }) => {
+  const history = useHistory();
   const dispatch = useDispatch();
+  const rowClickHandler = ({ _id }) => {
+    dispatch(fetchMatterDetailsRequest(_id));
+    history.push(`/details/${_id}`);
+  };
 
-  const handleChangeAreaOfLowFilter = (e) => {
+  const handleChangeAreaOfLawFilter = (e) => {
     const filterValue = e.target.value;
-    dispatch(setAreaOfLowFilter(filterValue));
+    dispatch(setAreaOfLawFilter(filterValue));
   };
 
   const handleChangePageNumber = (pagination) => {
@@ -32,8 +49,13 @@ const List = ({
   };
 
   useEffect(() => {
-    fetchMatterListRequest({ pageNumber: 1, areaOfLaw: areaOfLowFilter });
-  }, [areaOfLowFilter, fetchMatterListRequest, currentPageNumber]);
+    dispatch(
+      fetchMatterListRequest({
+        pageNumber: currentPageNumber,
+        areaOfLaw: areaOfLawFilter,
+      })
+    );
+  }, [areaOfLawFilter, currentPageNumber, fetchMatterListRequest, dispatch]);
 
   if (isLoading) {
     return <Loader />;
@@ -52,32 +74,37 @@ const List = ({
       <div className='title-filter-wrapper'>
         <h3>My Cases</h3>
         <RadioGroup
+          value={areaOfLawFilter}
           options={AREAS_OF_LAW_VALUES}
-          value={areaOfLowFilter}
-          onChange={handleChangeAreaOfLowFilter}
+          onChange={handleChangeAreaOfLawFilter}
         />
       </div>
       <Table
-        dataSource={matterList}
         columns={COLUMNS}
+        dataSource={matterList}
         pagination={{
-          pageSize: 10,
-          total: 200,
+          total: numberOfMetters,
+          pageSize: currentPageSize,
           current: currentPageNumber,
         }}
         onChange={handleChangePageNumber}
         rowKey={(record) => record._id}
+        onRow={(record) => ({
+          onClick: () => rowClickHandler(record),
+        })}
       />
     </div>
   );
 };
 
 const mapStateToProps = (state) => ({
+  error: selectError(state),
   matterList: selectMatterList(state),
-  isLoading: state.matter.isLoading,
-  error: state.matter.error,
-  areaOfLowFilter: state.matter.areaOfLowFilter,
-  currentPageNumber: state.matter.currentPageNumber,
+  isLoading: selectLoadingState(state),
+  areaOfLawFilter: selectAreaOfLawFilter(state),
+  currentPageSize: selectCurrentPageSize(state),
+  numberOfMetters: selectNumberOfMetters(state),
+  currentPageNumber: selectCurrentPageNumber(state),
 });
 
 const mapDispatchToProps = {

@@ -3,12 +3,15 @@ import {
 } from './actions';
 
 const initialState = {
+  isLoading: true,
+  selectedMatterId: '',
+  areaOfLawFilter: '',
   matterList: [],
-  matterDetails: null,
-  isLoading: undefined,
   error: null,
+  detailsCache: {},
+  numberOfMetters: 0,
+  currentPageSize: 0,
   currentPageNumber: 1,
-  areaOfLowFilter: '',
 };
 
 function matterReducer(state = initialState, action) {
@@ -16,8 +19,8 @@ function matterReducer(state = initialState, action) {
     case MATTER.FETCH_LIST.REQUEST:
       return {
         ...state,
-        isLoading: true,
-          error: null,
+        error: null,
+          isLoading: true,
           pageNumber: action.payload.pageNumber,
           areaOfLaw: action.payload.areaOfLaw,
       };
@@ -25,8 +28,10 @@ function matterReducer(state = initialState, action) {
     case MATTER.FETCH_LIST.SUCCESS:
       return {
         ...state,
-        isLoading: false,
-          matterList: action.payload,
+        matterList: action.payload.data,
+          isLoading: false,
+          numberOfMetters: action.payload.meta.numberOfDocuments,
+          currentPageSize: action.payload.meta.pageSize,
       };
 
     case MATTER.FETCH_LIST.ERROR:
@@ -35,12 +40,44 @@ function matterReducer(state = initialState, action) {
         isLoading: false,
           error: action.payload,
       };
-    case 'SET_AREA_OF_LOW_FILTER':
+
+
+    case MATTER.FETCH_DETAILS.REQUEST:
       return {
         ...state,
-        areaOfLowFilter: action.payload,
+        isLoading: true,
+          error: null,
+          selectedMatterId: action.payload,
       };
-    case 'SET_CURRENT_PAGE_NUMBER':
+
+    case MATTER.FETCH_DETAILS.SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+          detailsCache: {
+            ...state.detailsCache,
+            [action.payload._id]: action.payload,
+          },
+      };
+
+    case MATTER.FETCH_DETAILS.ERROR:
+      return {
+        ...state,
+        isLoading: false,
+          error: action.payload,
+          detailsCache: {
+            ...state.detailsCache,
+            [action.payload._id]: null,
+          },
+      };
+
+    case MATTER.FELTERS.AREAOFLAW:
+      return {
+        ...state,
+        areaOfLawFilter: action.payload,
+          currentPageNumber: 1,
+      };
+    case MATTER.FELTERS.PAGENUMBER:
       return {
         ...state,
         currentPageNumber: action.payload,
