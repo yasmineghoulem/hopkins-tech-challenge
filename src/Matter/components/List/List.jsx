@@ -38,7 +38,7 @@ const List = ({
   // Handles clicking on a row to navigate to matter details.
   // @param {Object} record
   const rowClickHandler = ({ _id }) => {
-    dispatch(fetchMatterDetailsRequest(_id));
+    fetchMatterDetailsRequest(_id);
     history.push(`/details/${_id}`);
   };
 
@@ -55,12 +55,10 @@ const List = ({
 
   useEffect(() => {
     // Trigger a request to fetch the list of matters when dependencies change.
-    dispatch(
-      fetchMatterListRequest({
-        pageNumber: currentPageNumber,
-        areaOfLaw: areaOfLawFilter,
-      })
-    );
+    fetchMatterListRequest({
+      pageNumber: currentPageNumber,
+      areaOfLaw: areaOfLawFilter,
+    });
   }, [areaOfLawFilter, currentPageNumber, fetchMatterListRequest, dispatch]);
 
   // Display a loader component if data is currently being loaded.
