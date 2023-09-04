@@ -26,10 +26,6 @@ export const Details = ({ details, isLoading, error }) => {
     return <Loader />;
   }
 
-  if (error) {
-    return <Error message={error} />;
-  }
-
   if (!details) {
     return <NoData />;
   }
@@ -37,13 +33,19 @@ export const Details = ({ details, isLoading, error }) => {
   return (
     <div>
       <BackNavigation />
-      <h2>{details.title}</h2>
-      <Table
-        dataSource={details.tasks}
-        columns={DETAILSCOLUMNS} // Render a table with columns based on the 'DETAILSCOLUMNS' constant.
-        rowKey={(record) => record._id} // Assign a unique key to each row.
-        pagination={false} // Disable pagination for the table.
-      />
+      {!details ? <h2>Sorry! No Title</h2> : <h2>{details.title}</h2>}
+      {error ? (
+        <Error message={error} />
+      ) : !details ? (
+        <NoData /> // Display NoData component when there's no data
+      ) : (
+        <Table
+          dataSource={details.tasks}
+          columns={DETAILSCOLUMNS}
+          rowKey={(record) => record._id}
+          pagination={false}
+        />
+      )}
     </div>
   );
 };

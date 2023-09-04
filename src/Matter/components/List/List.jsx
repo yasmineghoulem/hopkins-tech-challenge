@@ -1,4 +1,4 @@
-import { Table } from 'antd';
+import { Pagination, Table } from 'antd';
 import {
   fetchMatterDetailsRequest,
   fetchMatterListRequest,
@@ -49,8 +49,8 @@ const List = ({
   };
 
   // Handles changing the page number.
-  const handleChangePageNumber = (pagination) => {
-    dispatch(setCurrentPageNumber(pagination.current));
+  const handleChangePageNumber = (page) => {
+    dispatch(setCurrentPageNumber(page));
   };
 
   useEffect(() => {
@@ -66,16 +66,6 @@ const List = ({
     return <Loader />;
   }
 
-  // Display an error message component if an error occurred during data fetching.
-  if (error) {
-    return <Error message={error} />;
-  }
-
-  // Display a "No Data" component if the list of matters is empty.
-  if (matterList.length === 0) {
-    return <NoData />;
-  }
-
   return (
     <div>
       <div className='title-filter-wrapper'>
@@ -86,19 +76,31 @@ const List = ({
           onChange={handleChangeAreaOfLawFilter}
         />
       </div>
-      <Table
-        columns={COLUMNS}
-        dataSource={matterList}
-        pagination={{
-          total: numberOfMatters,
-          pageSize: currentPageSize,
-          current: currentPageNumber,
-        }}
+
+      {error ? (
+        <Error message={error} />
+      ) : matterList.length === 0 ? (
+        <NoData /> // Display NoData component when there's no data
+      ) : (
+        <Table
+          columns={COLUMNS}
+          dataSource={matterList}
+          pagination={false}
+          onChange={handleChangePageNumber}
+          rowKey={(record) => record._id}
+          onRow={(record) => ({
+            onClick: () => rowClickHandler(record),
+          })}
+        />
+      )}
+      <Pagination
+        size='small'
+        className='matter-list-pagination'
+        total={numberOfMatters}
+        pageSize={currentPageSize}
+        current={currentPageNumber}
         onChange={handleChangePageNumber}
-        rowKey={(record) => record._id}
-        onRow={(record) => ({
-          onClick: () => rowClickHandler(record),
-        })}
+        showSizeChanger={false}
       />
     </div>
   );

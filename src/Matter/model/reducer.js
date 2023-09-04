@@ -7,7 +7,7 @@ const initialState = {
   matterList: [], // Stores the list of matter data
   error: null, // Stores any error that occurred during data fetching
   detailsCache: {}, // Caches matter details to avoid unnecessary re-fetching
-  numberOfMatters: 0, // Stores the total number of matters based on the filters
+  numberOfMatters: 200, // Stores the total number of matters based on the filters
   currentPageSize: 0, // Stores the current page size for pagination
   currentPageNumber: 1, // Stores the current page number for pagination
 };

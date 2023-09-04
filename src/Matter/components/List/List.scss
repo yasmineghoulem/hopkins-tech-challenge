@@ -59,4 +59,11 @@
         margin: 0;
     }
 }
-  
+
+/* Pagination Styles */
+
+.matter-list-pagination {
+  display: flex;
+  justify-content: flex-end;
+  margin: 1rem;
+}
