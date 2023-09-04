@@ -1,54 +1,60 @@
-import { connect, useDispatch } from 'react-redux';
-import React, { useEffect } from 'react';
+import { Table } from 'antd';
 import {
   fetchMatterDetailsRequest,
   fetchMatterListRequest,
-  setAreaOfLawFilter,
   setCurrentPageNumber,
+  setAreaOfLawFilter,
 } from '../../model/actions';
 import {
-  selectCurrentPageNumber,
-  selectCurrentPageSize,
-  selectAreaOfLawFilter,
   selectError,
   selectMatterList,
   selectLoadingState,
-  selectNumberOfMetters,
+  selectCurrentPageSize,
+  selectNumberOfMatters,
+  selectAreaOfLawFilter,
+  selectCurrentPageNumber,
 } from '../../model/selectors';
-import { NoData, Error, Loader, RadioGroup } from 'shared/components';
-import { Table } from 'antd';
-
-import './List.scss';
+import React, { useEffect } from 'react';
+import { connect, useDispatch } from 'react-redux';
 import { AREAS_OF_LAW_VALUES, COLUMNS } from 'Matter/enums';
+import { NoData, Error, Loader, RadioGroup } from 'shared/components';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
+import './List.scss';
+
 const List = ({
+  fetchMatterListRequest,
+  currentPageNumber,
+  areaOfLawFilter,
+  currentPageSize,
+  numberOfMatters,
   matterList,
   isLoading,
   error,
-  areaOfLawFilter,
-  fetchMatterListRequest,
-  currentPageNumber,
-  currentPageSize,
-  numberOfMetters,
 }) => {
   const history = useHistory();
   const dispatch = useDispatch();
+
+  // Handles clicking on a row to navigate to matter details.
+  // @param {Object} record
   const rowClickHandler = ({ _id }) => {
     dispatch(fetchMatterDetailsRequest(_id));
     history.push(`/details/${_id}`);
   };
 
+  // Handles changing the area of law filter.
   const handleChangeAreaOfLawFilter = (e) => {
     const filterValue = e.target.value;
     dispatch(setAreaOfLawFilter(filterValue));
   };
 
+  // Handles changing the page number.
   const handleChangePageNumber = (pagination) => {
     dispatch(setCurrentPageNumber(pagination.current));
   };
 
   useEffect(() => {
+    // Trigger a request to fetch the list of matters when dependencies change.
     dispatch(
       fetchMatterListRequest({
         pageNumber: currentPageNumber,
@@ -57,14 +63,17 @@ const List = ({
     );
   }, [areaOfLawFilter, currentPageNumber, fetchMatterListRequest, dispatch]);
 
+  // Display a loader component if data is currently being loaded.
   if (isLoading) {
     return <Loader />;
   }
 
+  // Display an error message component if an error occurred during data fetching.
   if (error) {
     return <Error message={error} />;
   }
 
+  // Display a "No Data" component if the list of matters is empty.
   if (matterList.length === 0) {
     return <NoData />;
   }
@@ -83,7 +92,7 @@ const List = ({
         columns={COLUMNS}
         dataSource={matterList}
         pagination={{
-          total: numberOfMetters,
+          total: numberOfMatters,
           pageSize: currentPageSize,
           current: currentPageNumber,
         }}
@@ -103,12 +112,14 @@ const mapStateToProps = (state) => ({
   isLoading: selectLoadingState(state),
   areaOfLawFilter: selectAreaOfLawFilter(state),
   currentPageSize: selectCurrentPageSize(state),
-  numberOfMetters: selectNumberOfMetters(state),
+  numberOfMatters: selectNumberOfMatters(state),
   currentPageNumber: selectCurrentPageNumber(state),
 });
 
 const mapDispatchToProps = {
-  fetchMatterListRequest,
+  fetchMatterListRequest, // Maps the fetchMatterListRequest action to a component prop.
 };
 
+// This connects the component to the Redux store, allowing it to dispatch
+// actions and access state properties as defined in mapStateToProps.
 export default connect(mapStateToProps, mapDispatchToProps)(List);

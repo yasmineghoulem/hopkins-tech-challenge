@@ -1,23 +1,10 @@
-import {
-  createStore,
-  combineReducers,
-  applyMiddleware,
-} from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import {
-  all,
-} from 'redux-saga/effects';
-import {
-  connectRouter,
-  routerMiddleware,
-} from 'connected-react-router';
-import {
-  createBrowserHistory,
-} from 'history';
+import { all } from 'redux-saga/effects';
+import { connectRouter, routerMiddleware } from 'connected-react-router';
+import { createBrowserHistory } from 'history';
 
-import {
-  composeWithDevTools,
-} from 'redux-devtools-extension/developmentOnly';
+import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 
 // reducers
 import matterReducer from './Matter/model/reducer';
