@@ -31,7 +31,7 @@ export const Details = ({
   return (
     <div>
       <BackNavigation />
-      {!details ? <h2>Sorry! No Title</h2> : <h2>{details.title}</h2>}
+      {!details ? <h2>Sorry! No Details</h2> : <h2>{details.title}</h2>}
       {error ? (
         <Error message={error} />
       ) : !details ? (
