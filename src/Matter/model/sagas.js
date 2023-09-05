@@ -1,9 +1,9 @@
 import {
-    MATTER,
-    fetchMatterDetailsSuccess,
-    fetchMatterDetailsError,
-    fetchMatterListSuccess,
-    fetchMatterListError,
+  MATTER,
+  fetchMatterDetailsSuccess,
+  fetchMatterDetailsError,
+  fetchMatterListSuccess,
+  fetchMatterListError,
 } from './actions';
 
 import { matterApi } from './api';

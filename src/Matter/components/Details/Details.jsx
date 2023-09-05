@@ -6,28 +6,26 @@ import {
 import { Table } from 'antd';
 import { useEffect } from 'react';
 import { DETAILSCOLUMNS } from 'Matter/enums';
-import { connect, useDispatch } from 'react-redux';
+import { connect } from 'react-redux';
 import { fetchMatterDetailsRequest } from 'Matter/model/actions';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import { BackNavigation, Error, Loader, NoData } from 'shared/components';
 
-export const Details = ({ details, isLoading, error }) => {
+export const Details = ({
+  details,
+  isLoading,
+  error,
+  fetchMatterDetailsRequest,
+}) => {
   const { id } = useParams(); // Accessing the 'id' parameter from the URL
-  const dispatch = useDispatch();
 
   useEffect(() => {
     // fetch details when the component when 'details' is undefined to prevent refrech problem.
-    if (details === undefined) {
-      dispatch(fetchMatterDetailsRequest(id)); // fetch matter details based on the 'id'.
-    }
-  }, [dispatch, id, details]);
+    fetchMatterDetailsRequest(id); // fetch matter details based on the 'id'.
+  }, [id, fetchMatterDetailsRequest]);
 
   if (isLoading) {
     return <Loader />;
-  }
-
-  if (!details) {
-    return <NoData />;
   }
 
   return (

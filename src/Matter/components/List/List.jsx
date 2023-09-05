@@ -1,6 +1,5 @@
 import { Pagination, Table } from 'antd';
 import {
-  fetchMatterDetailsRequest,
   fetchMatterListRequest,
   setCurrentPageNumber,
   setAreaOfLawFilter,
@@ -38,7 +37,6 @@ const List = ({
   // Handles clicking on a row to navigate to matter details.
   // @param {Object} record
   const rowClickHandler = ({ _id }) => {
-    fetchMatterDetailsRequest(_id);
     history.push(`/details/${_id}`);
   };
 

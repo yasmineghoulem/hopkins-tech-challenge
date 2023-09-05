@@ -68,10 +68,6 @@ function matterReducer(state = initialState, action) {
         ...state,
         isLoading: false,
         error: action.payload,
-        detailsCache: {
-          ...state.detailsCache,
-          [action.payload._id]: null,
-        },
       };
 
     case MATTER.FILTERS.AREAOFLAW:
